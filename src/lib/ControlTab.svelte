@@ -629,7 +629,7 @@
 
       <button
         on:click={addWait}
-        class="font-semibold text-amber-500 text-sm flex flex-row justify-start items-center gap-1"
+        class="font-semibold #e1461b text-sm flex flex-row justify-start items-center gap-1"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"

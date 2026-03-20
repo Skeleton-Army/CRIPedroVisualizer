@@ -294,7 +294,7 @@
 <SettingsDialog bind:isOpen={settingsOpen} bind:settings />
 
 <div
-  class="absolute top-0 left-0 w-full bg-neutral-50 dark:bg-neutral-900 shadow-md flex flex-row justify-between items-center px-6 py-4 border-b-[0.75px] border-[#b300e6]"
+  class="absolute top-0 left-0 w-full bg-neutral-50 dark:bg-neutral-900 shadow-md flex flex-row justify-between items-center px-6 py-4 border-b-[0.75px] border-[#fe55a2]"
 >
   <!-- Title -->
   <div class="font-semibold flex flex-col justify-start items-start">
