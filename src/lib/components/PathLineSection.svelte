@@ -242,7 +242,7 @@
       <button
         title="Add Wait After"
         on:click={onAddWaitAfter}
-        class="#E1461B hover:text-orange-600"
+        class="text-[#E1461B] hover:text-orange-600"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
