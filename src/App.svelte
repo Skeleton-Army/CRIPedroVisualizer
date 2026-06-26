@@ -1640,7 +1640,7 @@
         });
 
       const fieldImage = await loadImage(fieldMapSrc).catch(async () => {
-        return loadImage(resolveAssetUrl("fields/field-188.svg"));
+        return loadImage(resolveAssetUrl("fields/decodecri.webp"));
       });
       const robotImage = await loadImage(resolveAssetUrl(settings.robotImage, "robot.png")).catch(async () => {
         return loadImage(resolveAssetUrl("robot.png"));
@@ -3102,7 +3102,7 @@
         draggable="false"
         on:error={(e) => {
           console.error("Failed to load field map:", settings.fieldMap);
-          e.target.src = resolveAssetUrl("fields/field-188.svg"); // Fallback
+          e.target.src = resolveAssetUrl("fields/decodecri.webp"); // Fallback
         }}
         on:dragstart={(e) => e.preventDefault()}
         on:selectstart={(e) => e.preventDefault()}

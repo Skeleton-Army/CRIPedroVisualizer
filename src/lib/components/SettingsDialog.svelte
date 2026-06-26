@@ -333,7 +333,7 @@
                     {#if settings.robotImage && !isDefaultRobotImage(settings.robotImage)}
                       <button
                         on:click={() => {
-                          settings.robotImage = "/robot.png";
+                          settings.robotImage = "robot.png";
                           settings = { ...settings }; // Force reactivity
                         }}
                         class="absolute top-1 right-1 p-1 bg-red-500 text-white rounded-full hover:bg-red-600 transition-colors"
@@ -363,7 +363,7 @@
                   >
                     {#if settings.robotImage && !isDefaultRobotImage(settings.robotImage)}
                       <p class="font-medium">
-                        {#if settings.robotImage === "/JefferyThePotato.png"}
+                        {#if settings.robotImage === "JefferyThePotato.png"}
                           <span class="inline-flex items-center gap-1">
                             <span>🥔</span>
                             <span>Jeffery the Potato Active!</span>
@@ -377,7 +377,7 @@
                         class="truncate max-w-[160px]"
                         title={settings.robotImage.substring(0, 100)}
                       >
-                        {#if settings.robotImage === "/JefferyThePotato.png"}
+                        {#if settings.robotImage === "JefferyThePotato.png"}
                           Best. Robot. Ever. 🥔
                         {:else}
                           {settings.robotImage.substring(0, 30)}...
@@ -442,9 +442,9 @@
 
                     <button
                       on:click={() => {
-                        settings.robotImage = "/robot.png";
-                        settings = { ...settings };
-                      }}
+                          settings.robotImage = "robot.png";
+                          settings = { ...settings };
+                        }}
                       class="px-4 py-2 text-sm bg-neutral-500 hover:bg-neutral-600 text-white rounded-md transition-colors"
                       disabled={!settings.robotImage ||
                         isDefaultRobotImage(settings.robotImage)}
@@ -454,7 +454,7 @@
 
                     <button
                       on:click={() => {
-                        settings.robotImage = "/JefferyThePotato.png";
+                        settings.robotImage = "JefferyThePotato.png";
                         settings = { ...settings };
                       }}
                       class="potato-tooltip px-4 py-2 text-sm bg-amber-700 hover:bg-amber-800 text-white rounded-md transition-colors flex items-center justify-center gap-2 group relative overflow-hidden"
