@@ -8,6 +8,26 @@
   export let isOpen = false;
   export let settings: Settings;
 
+  const resolveAssetUrl = (path?: string, fallback = ""): string => {
+    if (!path) {
+      return fallback ? `${import.meta.env.BASE_URL}${fallback.replace(/^\/+/, "")}` : import.meta.env.BASE_URL;
+    }
+
+    if (
+      path.startsWith("data:") ||
+      path.startsWith("http://") ||
+      path.startsWith("https://") ||
+      path.startsWith("blob:")
+    ) {
+      return path;
+    }
+
+    return `${import.meta.env.BASE_URL}${path.replace(/^\/+/, "")}`;
+  };
+
+  const isDefaultRobotImage = (path?: string) =>
+    resolveAssetUrl(path || "robot.png") === resolveAssetUrl("robot.png");
+
   // Track which sections are collapsed
   let collapsedSections = {
     robot: true,
@@ -299,7 +319,7 @@
                     class="relative w-20 h-20 border-2 border-neutral-300 dark:border-neutral-600 rounded-md overflow-hidden bg-white dark:bg-neutral-900"
                   >
                     <img
-                      src={settings.robotImage || "/robot.png"}
+                      src={resolveAssetUrl(settings.robotImage, "robot.png")}
                       alt="Robot Preview"
                       class="w-full h-full object-contain"
                       on:error={(e) => {
@@ -307,10 +327,10 @@
                           "Failed to load robot image:",
                           settings.robotImage,
                         );
-                        e.target.src = "/robot.png"; // Fallback
+                        e.target.src = resolveAssetUrl("robot.png"); // Fallback
                       }}
                     />
-                    {#if settings.robotImage && settings.robotImage !== "/robot.png"}
+                    {#if settings.robotImage && !isDefaultRobotImage(settings.robotImage)}
                       <button
                         on:click={() => {
                           settings.robotImage = "/robot.png";
@@ -341,7 +361,7 @@
                   <div
                     class="text-center text-xs text-neutral-600 dark:text-neutral-400"
                   >
-                    {#if settings.robotImage && settings.robotImage !== "/robot.png"}
+                    {#if settings.robotImage && !isDefaultRobotImage(settings.robotImage)}
                       <p class="font-medium">
                         {#if settings.robotImage === "/JefferyThePotato.png"}
                           <span class="inline-flex items-center gap-1">
@@ -427,7 +447,7 @@
                       }}
                       class="px-4 py-2 text-sm bg-neutral-500 hover:bg-neutral-600 text-white rounded-md transition-colors"
                       disabled={!settings.robotImage ||
-                        settings.robotImage === "/robot.png"}
+                        isDefaultRobotImage(settings.robotImage)}
                     >
                       Use Default Image
                     </button>

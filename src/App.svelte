@@ -117,6 +117,22 @@
   let cancelGifExport = false;
   // Path data
   let settings: Settings = { ...DEFAULT_SETTINGS };
+  const resolveAssetUrl = (path?: string, fallback = ""): string => {
+    if (!path) {
+      return fallback ? `${import.meta.env.BASE_URL}${fallback.replace(/^\/+/, "")}` : import.meta.env.BASE_URL;
+    }
+
+    if (
+      path.startsWith("data:") ||
+      path.startsWith("http://") ||
+      path.startsWith("https://") ||
+      path.startsWith("blob:")
+    ) {
+      return path;
+    }
+
+    return `${import.meta.env.BASE_URL}${path.replace(/^\/+/, "")}`;
+  };
   let startPoint: Point = getDefaultStartPoint();
   let lines: Line[] = normalizeLines(getDefaultLines());
 
@@ -140,10 +156,10 @@
 
   $: fieldMapSrc =
     settings.fieldMap === "custom"
-      ? settings.customFieldImage || "/fields/decodecri.webp"
+      ? resolveAssetUrl(settings.customFieldImage, "fields/decodecri.webp")
       : settings.fieldMap
-        ? `/fields/${settings.fieldMap}`
-        : "/fields/decodecri.webp";
+        ? resolveAssetUrl(`fields/${settings.fieldMap}`, "fields/decodecri.webp")
+        : resolveAssetUrl("fields/decodecri.webp");
   let sequence: SequenceItem[] = lines.map((ln) => ({
     kind: "path",
     lineId: ln.id!,
@@ -1624,10 +1640,10 @@
         });
 
       const fieldImage = await loadImage(fieldMapSrc).catch(async () => {
-        return loadImage("/fields/decode.webp");
+        return loadImage(resolveAssetUrl("fields/field-188.svg"));
       });
-      const robotImage = await loadImage(settings.robotImage || "/robot.png").catch(async () => {
-        return loadImage("/robot.png");
+      const robotImage = await loadImage(resolveAssetUrl(settings.robotImage, "robot.png")).catch(async () => {
+        return loadImage(resolveAssetUrl("robot.png"));
       });
 
       const drawRobot = (
@@ -3086,7 +3102,7 @@
         draggable="false"
         on:error={(e) => {
           console.error("Failed to load field map:", settings.fieldMap);
-          e.target.src = "/fields/field-188.svg"; // Fallback
+          e.target.src = resolveAssetUrl("fields/field-188.svg"); // Fallback
         }}
         on:dragstart={(e) => e.preventDefault()}
         on:selectstart={(e) => e.preventDefault()}
@@ -3095,7 +3111,7 @@
       <!-- Main robot: only show in normal mode -->
       {#if $activePaths.length === 0}
         <img
-          src={settings.robotImage || "/robot.png"}
+          src={resolveAssetUrl(settings.robotImage, "robot.png")}
           alt="Robot"
           style={`position: absolute; top: ${robotXY.y}px;
 left: ${robotXY.x}px; transform: translate(-50%, -50%) rotate(${robotHeading}deg); z-index: 20; width: ${x(robotWidth)}px; height: ${x(robotHeight)}px;user-select: none; -webkit-user-select: none; -moz-user-select: none;-ms-user-select: none;
@@ -3103,7 +3119,7 @@ pointer-events: none;`}
           draggable="false"
           on:error={(e) => {
             console.error("Failed to load robot image:", settings.robotImage);
-            e.target.src = "/robot.png"; // Fallback to default
+            e.target.src = resolveAssetUrl("robot.png"); // Fallback to default
           }}
           on:dragstart={(e) => e.preventDefault()}
           on:selectstart={(e) => e.preventDefault()}
@@ -3145,7 +3161,7 @@ pointer-events: none;`}
       <!-- Second robot: only show in dual path mode (not multi-path mode) -->
       {#if $activePaths.length === 0 && $dualPathMode}
         <img
-          src={settings.robotImage || "/robot.png"}
+          src={resolveAssetUrl(settings.robotImage, "robot.png")}
           alt="Robot 2"
           style={`position: absolute; top: ${secondRobotXY.y}px;
 left: ${secondRobotXY.x}px; transform: translate(-50%, -50%) rotate(${secondRobotHeading}deg); z-index: 19; width: ${x(robotWidth)}px; height: ${x(robotHeight)}px;user-select: none; -webkit-user-select: none; -moz-user-select: none;-ms-user-select: none;
@@ -3153,7 +3169,7 @@ pointer-events: none; opacity: 0.8;`}
           draggable="false"
           on:error={(e) => {
             console.error("Failed to load robot image:", settings.robotImage);
-            e.target.src = "/robot.png";
+            e.target.src = resolveAssetUrl("robot.png");
           }}
           on:dragstart={(e) => e.preventDefault()}
           on:selectstart={(e) => e.preventDefault()}
@@ -3196,7 +3212,7 @@ pointer-events: none; opacity: 0.8;`}
       {#if $activePaths.length > 0}
         {#each additionalRobotStates as robotState, idx}
           <img
-            src={settings.robotImage || "/robot.png"}
+            src={resolveAssetUrl(settings.robotImage, "robot.png")}
             alt="Robot {idx + 1}"
             style={`position: absolute; top: ${robotState.xy.y}px;
 left: ${robotState.xy.x}px; transform: translate(-50%, -50%) rotate(${robotState.heading}deg); z-index: ${20 - idx}; width: ${x(robotWidth)}px; height: ${x(robotHeight)}px;user-select: none; -webkit-user-select: none; -moz-user-select: none;-ms-user-select: none;
@@ -3204,7 +3220,7 @@ pointer-events: none; opacity: ${1.0 - idx * 0.15};`}
             draggable="false"
             on:error={(e) => {
               console.error("Failed to load robot image:", settings.robotImage);
-              e.target.src = "/robot.png";
+              e.target.src = resolveAssetUrl("robot.png");
             }}
             on:dragstart={(e) => e.preventDefault()}
             on:selectstart={(e) => e.preventDefault()}
