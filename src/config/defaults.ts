@@ -92,32 +92,5 @@ export function getDefaultLines(): Line[] {
  * Get default shapes (field obstacles)
  */
 export function getDefaultShapes(): Shape[] {
-  return [
-    {
-      id: "triangle-1",
-      name: "Red Goal",
-      vertices: [
-        { x: 188, y: 93 },
-        { x: 188, y: 188 },
-        { x: 160, y: 188 },
-        { x: 183, y: 158 },
-        { x: 183, y: 93 },
-      ],
-      color: "#dc2626",
-      fillColor: "#ff6b6b",
-    },
-    {
-      id: "triangle-2",
-      name: "Blue Goal",
-      vertices: [
-        { x: 8, y: 158 },
-        { x: 33, y: 188 },
-        { x: 0, y: 188 },
-        { x: 0, y: 93 },
-        { x: 8, y: 93 },
-      ],
-      color: "#2563eb",
-      fillColor: "#60a5fa",
-    },
-  ];
+  return [];
 }
