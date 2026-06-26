@@ -12,12 +12,13 @@ export const DEFAULT_ROBOT_HEIGHT = 16;
  */
 export const POINT_RADIUS = 1.15;
 export const LINE_WIDTH = 0.57;
-export const FIELD_SIZE = 141.5;
+export const FIELD_SIZE = 188;
 
 /**
  * Available field maps
  */
 export const AVAILABLE_FIELD_MAPS = [
+  { value: "decodecri.webp", label: "DECODE CRI Field (2025-2026)" },
   { value: "decode.webp", label: "DECODE Field (2025-2026)" },
   { value: "intothedeep.webp", label: "Into The Deep Field (2024-2025)" },
   { value: "centerstage.webp", label: "Centerstage (2023-2024)" },
@@ -38,7 +39,7 @@ export const DEFAULT_SETTINGS: Settings = {
   maxVelocity: 40,
   maxAcceleration: 30,
   maxDeceleration: 30,
-  fieldMap: "decode.webp",
+  fieldMap: "field-188.svg",
   robotImage: "/robot.png",
   theme: "auto",
   showGhostPaths: false,
@@ -96,11 +97,11 @@ export function getDefaultShapes(): Shape[] {
       id: "triangle-1",
       name: "Red Goal",
       vertices: [
-        { x: 141.5, y: 70 },
-        { x: 141.5, y: 141.5 },
-        { x: 120, y: 141.5 },
-        { x: 138, y: 119 },
-        { x: 138, y: 70 },
+        { x: 188, y: 93 },
+        { x: 188, y: 188 },
+        { x: 160, y: 188 },
+        { x: 183, y: 158 },
+        { x: 183, y: 93 },
       ],
       color: "#dc2626",
       fillColor: "#ff6b6b",
@@ -109,11 +110,11 @@ export function getDefaultShapes(): Shape[] {
       id: "triangle-2",
       name: "Blue Goal",
       vertices: [
-        { x: 6, y: 119 },
-        { x: 25, y: 141.5 },
-        { x: 0, y: 141.5 },
-        { x: 0, y: 70 },
-        { x: 6, y: 70 },
+        { x: 8, y: 158 },
+        { x: 33, y: 188 },
+        { x: 0, y: 188 },
+        { x: 0, y: 93 },
+        { x: 8, y: 93 },
       ],
       color: "#2563eb",
       fillColor: "#60a5fa",

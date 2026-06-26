@@ -140,10 +140,10 @@
 
   $: fieldMapSrc =
     settings.fieldMap === "custom"
-      ? settings.customFieldImage || "/fields/decode.webp"
+      ? settings.customFieldImage || "/fields/decodecri.webp"
       : settings.fieldMap
         ? `/fields/${settings.fieldMap}`
-        : "/fields/decode.webp";
+        : "/fields/decodecri.webp";
   let sequence: SequenceItem[] = lines.map((ln) => ({
     kind: "path",
     lineId: ln.id!,
@@ -3086,7 +3086,7 @@
         draggable="false"
         on:error={(e) => {
           console.error("Failed to load field map:", settings.fieldMap);
-          e.target.src = "/fields/decode.webp"; // Fallback
+          e.target.src = "/fields/field-188.svg"; // Fallback
         }}
         on:dragstart={(e) => e.preventDefault()}
         on:selectstart={(e) => e.preventDefault()}
