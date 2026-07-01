@@ -326,13 +326,13 @@
         </svg>
       </button>
 
-      <span>Pedro Pathing Visualizer</span>
+      <span>Pedro Pathing Visualizer For CRI</span>
       <!-- GitHub Repo Link (moved next to title) -->
       <a
         target="_blank"
         rel="noreferrer"
         title="GitHub Repo"
-        href="https://github.com/Pedro-Pathing/Visualizer"
+        href="https://github.com/Skeleton-Army/CRIPedroVisualizer"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
