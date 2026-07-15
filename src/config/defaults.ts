@@ -12,7 +12,7 @@ export const DEFAULT_ROBOT_HEIGHT = 16;
  */
 export const POINT_RADIUS = 1.15;
 export const LINE_WIDTH = 0.57;
-export const FIELD_SIZE = 188;
+export const FIELD_SIZE = 189.5;
 
 /**
  * Available field maps

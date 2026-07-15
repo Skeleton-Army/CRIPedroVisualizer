@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { FIELD_SIZE } from "../../config";
   export let startPoint: Point;
   export let addPathAtStart: () => void;
   export let addWaitAtStart: () => void;
@@ -57,7 +58,7 @@
     <input
       bind:value={startPoint.x}
       min="0"
-      max="141.5"
+      max={FIELD_SIZE}
       type="number"
       class="pl-1.5 rounded-md bg-neutral-100 border-[0.5px] focus:outline-none w-28 dark:bg-neutral-950 dark:border-neutral-700"
       step="0.1"
@@ -67,7 +68,7 @@
     <input
       bind:value={startPoint.y}
       min="0"
-      max="141.5"
+      max={FIELD_SIZE}
       type="number"
       class="pl-1.5 rounded-md bg-neutral-100 border-[0.5px] focus:outline-none w-28 dark:bg-neutral-950 dark:border-neutral-700"
       step="0.1"

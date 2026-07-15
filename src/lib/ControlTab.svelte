@@ -10,6 +10,7 @@
   } from "../types";
   import _ from "lodash";
   import { getRandomColor } from "../utils";
+  import { FIELD_SIZE } from "../config";
   import ObstaclesSection from "./components/ObstaclesSection.svelte";
   import RobotPositionDisplay from "./components/RobotPositionDisplay.svelte";
   import StartingPointSection from "./components/StartingPointSection.svelte";
@@ -411,8 +412,8 @@
         };
       } else {
         newPoint = {
-          x: _.random(0, 141.5),
-          y: _.random(0, 141.5),
+          x: _.random(0, FIELD_SIZE),
+          y: _.random(0, FIELD_SIZE),
           heading: "tangential",
           reverse: false,
         };
@@ -534,8 +535,8 @@
       id: makeId(),
       name: `Path ${lines.length + 1}`,
       endPoint: {
-        x: _.random(0, 141.5),
-        y: _.random(0, 141.5),
+        x: _.random(0, FIELD_SIZE),
+        y: _.random(0, FIELD_SIZE),
         heading: "tangential",
         reverse: false,
       },
@@ -635,8 +636,8 @@
       id: makeId(),
       name: `Path ${lines.length + 1}`,
       endPoint: {
-        x: _.random(0, 141.5),
-        y: _.random(0, 141.5),
+        x: _.random(0, FIELD_SIZE),
+        y: _.random(0, FIELD_SIZE),
         heading: "tangential",
         reverse: false,
       },
